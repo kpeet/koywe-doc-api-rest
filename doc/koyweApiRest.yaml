@@ -66,7 +66,7 @@
                       "message" : "\"clientId\" must only contain alphanumeric characters"
                     }
                   },
-                  "clientId Lenght" : {
+                  "clientId Length" : {
                     "value" : {
                       "message" : "\"clientId\" length must be 24 characters long"
                     }
@@ -129,7 +129,7 @@
                       "message" : "\"clientId\" must only contain alphanumeric characters"
                     }
                   },
-                  "clientId Lenght" : {
+                  "clientId Length" : {
                     "value" : {
                       "message" : "\"clientId\" length must be 24 characters long"
                     }
@@ -190,7 +190,7 @@
                       "message" : "\"clientId\" must only contain alphanumeric characters"
                     }
                   },
-                  "clientId Lenght" : {
+                  "clientId Length" : {
                     "value" : {
                       "message" : "\"clientId\" length must be 24 characters long"
                     }
@@ -253,7 +253,7 @@
                       "message" : "\"clientId\" must only contain alphanumeric characters"
                     }
                   },
-                  "clientId Lenght" : {
+                  "clientId Length" : {
                     "value" : {
                       "message" : "\"clientId\" length must be 24 characters long"
                     }
@@ -324,7 +324,7 @@
                       "message" : "\"clientId\" must only contain alphanumeric characters"
                     }
                   },
-                  "clientId Lenght" : {
+                  "clientId Length" : {
                     "value" : {
                       "message" : "\"clientId\" length must be 24 characters long"
                     }
@@ -376,7 +376,7 @@
                   "$ref" : "#/components/schemas/inline_response_400"
                 },
                 "examples" : {
-                  "ClientId invalid lenght" : {
+                  "ClientId invalid length" : {
                     "value" : {
                       "message" : "\"clientId\" length must be 24 characters long"
                     }
@@ -515,7 +515,7 @@
                       "message" : "\"code\" must only contain digits."
                     }
                   },
-                  "Code Lenght" : {
+                  "Code Length" : {
                     "value" : {
                       "message" : "\"code\" length must be 6 characters long"
                     }
@@ -851,7 +851,7 @@
                       "message" : "\"orderId\" must be a valid GUID"
                     }
                   },
-                  "Code Lenght" : {
+                  "Code Length" : {
                     "value" : {
                       "message" : "\"code\" length must be 6 characters long"
                     }
@@ -961,7 +961,7 @@
     "/quotes/{quoteId}" : {
       "get" : {
         "tags" : [ "Quote Queries" ],
-        "summary" : "Returns quote details",
+        "summary" : "Returns quote details.",
         "description" : "Receives a quoteId value. One can be produced uing the previous quote service (post /quotes). Returns quote data.",
         "operationId" : "GetQuote",
         "parameters" : [ {
