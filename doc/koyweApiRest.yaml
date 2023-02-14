@@ -1,9 +1,9 @@
 {
-  "openapi" : "3.0.1",
+  "openapi" : "3.0.3",
   "info" : {
     "title" : "Koywe's API REST documentation",
     "description" : "The present documentation provides the information you need to familiarize with the services available in Koywe's API REST!",
-    "version" : "1.0.0"
+    "version" : "1.0.1"
   },
   "servers" : [ {
     "url" : "https://api-test.koywe.com/rest"
@@ -31,7 +31,7 @@
         "parameters" : [ {
           "name" : "clientId",
           "in" : "query",
-          "description" : "your company's unique Koywe identifier.",
+          "description" : "Your company's unique Koywe identifier.",
           "required" : false,
           "style" : "form",
           "explode" : true,
@@ -97,7 +97,7 @@
         }, {
           "name" : "clientId",
           "in" : "query",
-          "description" : "your company's unique Koywe identifier.",
+          "description" : "Your company's unique Koywe identifier.",
           "required" : false,
           "style" : "form",
           "explode" : true,
@@ -155,7 +155,7 @@
         "parameters" : [ {
           "name" : "clientId",
           "in" : "query",
-          "description" : "your company's unique Koywe identifier.",
+          "description" : "Your company's unique Koywe identifier.",
           "required" : false,
           "style" : "form",
           "explode" : true,
@@ -221,7 +221,7 @@
         }, {
           "name" : "clientId",
           "in" : "query",
-          "description" : "your company's unique Koywe identifier.",
+          "description" : "Your company's unique Koywe identifier.",
           "required" : false,
           "style" : "form",
           "explode" : true,
@@ -289,7 +289,7 @@
         }, {
           "name" : "clientId",
           "in" : "query",
-          "description" : "your company's unique Koywe identifier.",
+          "description" : "Your company's unique Koywe identifier.",
           "required" : false,
           "style" : "form",
           "explode" : true,
@@ -426,7 +426,7 @@
     "/auth/validate" : {
       "post" : {
         "tags" : [ "Auth" ],
-        "summary" : "Returns an id and send a validation email.",
+        "summary" : "Returns an id and sends a validation email.",
         "description" : "The email that is sent contains a 6-digit code that allows you to validate your session.",
         "operationId" : "validate",
         "requestBody" : {
