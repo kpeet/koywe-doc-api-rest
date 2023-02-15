@@ -1524,6 +1524,9 @@
           "logoOut" : {
             "type" : "string",
             "example" : "urlExmaple.com/currencies/MATIC.svg"
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/Order_pagination"
           }
         }
       },
@@ -1938,6 +1941,23 @@
           },
           "deliveryDate" : {
             "type" : "string"
+          }
+        }
+      },
+      "Order_pagination" : {
+        "type" : "object",
+        "properties" : {
+          "totalcount" : {
+            "type" : "number",
+            "example" : 30
+          },
+          "pageSize" : {
+            "type" : "number",
+            "example" : 6
+          },
+          "pageNumber" : {
+            "type" : "number",
+            "example" : 5
           }
         }
       }
