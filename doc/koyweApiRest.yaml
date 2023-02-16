@@ -607,10 +607,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "$ref" : "#/components/schemas/Order"
-                  }
+                  "$ref" : "#/components/schemas/Orders"
                 }
               }
             }
@@ -1524,9 +1521,37 @@
           "logoOut" : {
             "type" : "string",
             "example" : "urlExmaple.com/currencies/MATIC.svg"
+          }
+        }
+      },
+      "Pagination" : {
+        "type" : "object",
+        "properties" : {
+          "totalcount" : {
+            "type" : "number",
+            "example" : 30
+          },
+          "pageSize" : {
+            "type" : "number",
+            "example" : 6
+          },
+          "pageNumber" : {
+            "type" : "number",
+            "example" : 5
+          }
+        }
+      },
+      "Orders" : {
+        "type" : "object",
+        "properties" : {
+          "orders" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Order"
+            }
           },
           "pagination" : {
-            "$ref" : "#/components/schemas/Order_pagination"
+            "$ref" : "#/components/schemas/Pagination"
           }
         }
       },
@@ -1941,23 +1966,6 @@
           },
           "deliveryDate" : {
             "type" : "string"
-          }
-        }
-      },
-      "Order_pagination" : {
-        "type" : "object",
-        "properties" : {
-          "totalcount" : {
-            "type" : "number",
-            "example" : 30
-          },
-          "pageSize" : {
-            "type" : "number",
-            "example" : 6
-          },
-          "pageNumber" : {
-            "type" : "number",
-            "example" : 5
           }
         }
       }
