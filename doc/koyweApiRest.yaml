@@ -652,7 +652,7 @@
       "post" : {
         "tags" : [ "Orders" ],
         "summary" : "Creates a new order.",
-        "description" : "Creates a purchase or sell order, returns a UUID for tracking and, depending on the payment method, an URL to do so. For authenticated calls that do not have an email asociated, one must be included as a parameter to link the transaction to a specific user. If quoteId is provided and quote is still valid, symbolIn, symbolOut, amountIn, amountOut, and paymentMethodId are nullable. In the case of amountIn and amountOut, only one must be as an input parameter.",
+        "description" : "Creates a purchase or sell order, returns a UUID for tracking and, depending on the payment method, an URL to do so. For authenticated calls that do not have an email asociated, one must be included as a parameter to link the transaction to a specific user. If quoteId is provided and quote is still valid, symbolIn, symbolOut, amountIn, amountOut, and paymentMethodId are nullable. In the case of amountIn and amountOut, only one must be passed as an input parameter.",
         "operationId" : "Createorder",
         "requestBody" : {
           "content" : {
@@ -877,7 +877,7 @@
       "post" : {
         "tags" : [ "Quote Queries" ],
         "summary" : "Creates a purchase or sell quote",
-        "description" : "Only one of the input parameters \"amountIn\" and \"amountOut\" must be provided. for on ramps receives adicionally clientId and paymentMethodId. Returns a quoteId that can be use to create an order (is not necessary, but if provided and still valid, fewer values will be necessary to create the order).",
+        "description" : "Only one of the input parameters \"amountIn\" and \"amountOut\" must be provided. for on ramps receives adicionally clientId and paymentMethodId. Returns a quoteId that can be use to create an order (is not necessary, but if provided and still valid, fewer values will be necessary to create the order). If executable is true, we store it and return a UUID.",
         "operationId" : "CreateQuote",
         "requestBody" : {
           "content" : {
@@ -1028,7 +1028,10 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/BankAccount"
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/BankAccount"
+                  }
                 }
               }
             }
@@ -1222,17 +1225,24 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400_3"
-                }
-              }
-            }
-          },
-          "500" : {
-            "description" : "Invalid _id parameter",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_500"
+                  "$ref" : "#/components/schemas/inline_response_400"
+                },
+                "examples" : {
+                  "_id length" : {
+                    "value" : {
+                      "message" : "\"_id\" length must be 24 characters long"
+                    }
+                  },
+                  "accountNumber syntax" : {
+                    "value" : {
+                      "message" : "Bank Account not found"
+                    }
+                  },
+                  "Invalid _id parameter" : {
+                    "value" : {
+                      "message" : "BankAccount error:Cast to ObjectId failed for value (type string) at path \"_id\" for model \"BankAccount\""
+                    }
+                  }
                 }
               }
             }
@@ -1288,7 +1298,7 @@
                   },
                   "Country not available" : {
                     "value" : {
-                      "message" : "not implemented for: "
+                      "message" : "not implemented for: *country*"
                     }
                   }
                 }
@@ -1862,24 +1872,6 @@
           },
           "email" : {
             "type" : "string"
-          }
-        }
-      },
-      "inline_response_400_3" : {
-        "type" : "object",
-        "properties" : {
-          "message" : {
-            "type" : "string",
-            "example" : "Bank Account not found"
-          }
-        }
-      },
-      "inline_response_500" : {
-        "type" : "object",
-        "properties" : {
-          "message" : {
-            "type" : "string",
-            "example" : "BankAccount error:Cast to ObjectId failed for value (type string) at path \"_id\" for model \"BankAccount\""
           }
         }
       },
