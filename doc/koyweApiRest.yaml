@@ -1056,7 +1056,7 @@
       "post" : {
         "tags" : [ "Bank Queries" ],
         "summary" : "Adds a bank account to proceed with the operation.",
-        "description" : "bankCode and documentNumber are optional. documentedNumber is required when the users is not KYC'd.",
+        "description" : "bankCode and documentNumber are optional. documentedNumber is required when the user is not KYC'd.",
         "operationId" : "CreateBankAccount",
         "requestBody" : {
           "content" : {
