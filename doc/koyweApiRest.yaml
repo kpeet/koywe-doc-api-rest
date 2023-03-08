@@ -1,9 +1,9 @@
 {
-  "openapi" : "3.0.1",
+  "openapi" : "3.0.3",
   "info" : {
     "title" : "Koywe's API REST documentation",
     "description" : "The present documentation provides the information you need to familiarize with the services available in Koywe's API REST!",
-    "version" : "1.0.0"
+    "version" : "1.0.2"
   },
   "servers" : [ {
     "url" : "https://api-test.koywe.com/rest"
@@ -17,9 +17,13 @@
   }, {
     "name" : "Auth"
   }, {
+    "name" : "Quote Queries"
+  }, {
     "name" : "Orders"
   }, {
     "name" : "Bank Queries"
+  }, {
+    "name" : "Document Queries"
   } ],
   "paths" : {
     "/currency-tokens" : {
@@ -31,7 +35,7 @@
         "parameters" : [ {
           "name" : "clientId",
           "in" : "query",
-          "description" : "your company's unique Koywe identifier.",
+          "description" : "Your company's unique Koywe identifier.",
           "required" : false,
           "style" : "form",
           "explode" : true,
@@ -66,7 +70,7 @@
                       "message" : "\"clientId\" must only contain alphanumeric characters"
                     }
                   },
-                  "clientId Lenght" : {
+                  "clientId Length" : {
                     "value" : {
                       "message" : "\"clientId\" length must be 24 characters long"
                     }
@@ -97,7 +101,7 @@
         }, {
           "name" : "clientId",
           "in" : "query",
-          "description" : "your company's unique Koywe identifier.",
+          "description" : "Your company's unique Koywe identifier.",
           "required" : false,
           "style" : "form",
           "explode" : true,
@@ -129,7 +133,7 @@
                       "message" : "\"clientId\" must only contain alphanumeric characters"
                     }
                   },
-                  "clientId Lenght" : {
+                  "clientId Length" : {
                     "value" : {
                       "message" : "\"clientId\" length must be 24 characters long"
                     }
@@ -155,7 +159,7 @@
         "parameters" : [ {
           "name" : "clientId",
           "in" : "query",
-          "description" : "your company's unique Koywe identifier.",
+          "description" : "Your company's unique Koywe identifier.",
           "required" : false,
           "style" : "form",
           "explode" : true,
@@ -190,7 +194,7 @@
                       "message" : "\"clientId\" must only contain alphanumeric characters"
                     }
                   },
-                  "clientId Lenght" : {
+                  "clientId Length" : {
                     "value" : {
                       "message" : "\"clientId\" length must be 24 characters long"
                     }
@@ -221,7 +225,7 @@
         }, {
           "name" : "clientId",
           "in" : "query",
-          "description" : "your company's unique Koywe identifier.",
+          "description" : "Your company's unique Koywe identifier.",
           "required" : false,
           "style" : "form",
           "explode" : true,
@@ -253,7 +257,7 @@
                       "message" : "\"clientId\" must only contain alphanumeric characters"
                     }
                   },
-                  "clientId Lenght" : {
+                  "clientId Length" : {
                     "value" : {
                       "message" : "\"clientId\" length must be 24 characters long"
                     }
@@ -289,7 +293,7 @@
         }, {
           "name" : "clientId",
           "in" : "query",
-          "description" : "your company's unique Koywe identifier.",
+          "description" : "Your company's unique Koywe identifier.",
           "required" : false,
           "style" : "form",
           "explode" : true,
@@ -324,7 +328,7 @@
                       "message" : "\"clientId\" must only contain alphanumeric characters"
                     }
                   },
-                  "clientId Lenght" : {
+                  "clientId Length" : {
                     "value" : {
                       "message" : "\"clientId\" length must be 24 characters long"
                     }
@@ -376,7 +380,7 @@
                   "$ref" : "#/components/schemas/inline_response_400"
                 },
                 "examples" : {
-                  "ClientId invalid lenght" : {
+                  "ClientId invalid length" : {
                     "value" : {
                       "message" : "\"clientId\" length must be 24 characters long"
                     }
@@ -426,7 +430,7 @@
     "/auth/validate" : {
       "post" : {
         "tags" : [ "Auth" ],
-        "summary" : "Returns an id and send a validation email.",
+        "summary" : "Returns an id and sends a validation email.",
         "description" : "The email that is sent contains a 6-digit code that allows you to validate your session.",
         "operationId" : "validate",
         "requestBody" : {
@@ -515,7 +519,7 @@
                       "message" : "\"code\" must only contain digits."
                     }
                   },
-                  "Code Lenght" : {
+                  "Code Length" : {
                     "value" : {
                       "message" : "\"code\" length must be 6 characters long"
                     }
@@ -607,10 +611,7 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "type" : "array",
-                  "items" : {
-                    "$ref" : "#/components/schemas/Order"
-                  }
+                  "$ref" : "#/components/schemas/Orders"
                 }
               }
             }
@@ -655,7 +656,7 @@
       "post" : {
         "tags" : [ "Orders" ],
         "summary" : "Creates a new order.",
-        "description" : "Creates a purchase or sell order, returns a UUID for tracking and, depending on the payment method, an URL to do so. For authenticated calls that do not have an email asociated, one must be included as a parameter to link the transaction to a specific user. If quoteId is provided and quote is still valid, symbolIn, symbolOut, amountIn, amountOut, and paymentMethodId are nullable. In the case of amountIn and amountOut, only one must be as an input parameter.",
+        "description" : "Creates a purchase or sell order, returns a UUID for tracking and, depending on the payment method, an URL to do so. For authenticated calls that do not have an email asociated, one must be included as a parameter to link the transaction to a specific user. If quoteId is provided and quote is still valid, symbolIn, symbolOut, amountIn, amountOut, and paymentMethodId are nullable. In the case of amountIn and amountOut, only one must be passed as an input parameter.",
         "operationId" : "Createorder",
         "requestBody" : {
           "content" : {
@@ -851,7 +852,7 @@
                       "message" : "\"orderId\" must be a valid GUID"
                     }
                   },
-                  "Code Lenght" : {
+                  "Code Length" : {
                     "value" : {
                       "message" : "\"code\" length must be 6 characters long"
                     }
@@ -880,7 +881,7 @@
       "post" : {
         "tags" : [ "Quote Queries" ],
         "summary" : "Creates a purchase or sell quote",
-        "description" : "Only one of the input parameters \"amountIn\" and \"amountOut\" must be provided. for on ramps receives adicionally clientId and paymentMethodId. Returns a quoteId that can be use to create an order (is not necessary, but if provided and still valid, fewer values will be necessary to create the order).",
+        "description" : "Only one of the input parameters \"amountIn\" and \"amountOut\" must be provided. for on ramps receives adicionally clientId and paymentMethodId. Returns a quoteId that can be use to create an order (is not necessary, but if provided and still valid, fewer values will be necessary to create the order). If executable is true, we store it and return a UUID.",
         "operationId" : "CreateQuote",
         "requestBody" : {
           "content" : {
@@ -961,7 +962,7 @@
     "/quotes/{quoteId}" : {
       "get" : {
         "tags" : [ "Quote Queries" ],
-        "summary" : "Returns quote details",
+        "summary" : "Returns quote details.",
         "description" : "Receives a quoteId value. One can be produced uing the previous quote service (post /quotes). Returns quote data.",
         "operationId" : "GetQuote",
         "parameters" : [ {
@@ -1031,7 +1032,10 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/BankAccount"
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/BankAccount"
+                  }
                 }
               }
             }
@@ -1054,7 +1058,7 @@
       "post" : {
         "tags" : [ "Bank Queries" ],
         "summary" : "Adds a bank account to proceed with the operation.",
-        "description" : "bankCode and documentNumber are optional. documentedNumber is required when the users is not KYC'd.",
+        "description" : "bankCode and documentNumber are optional. documentedNumber is required when the user is not KYC'd.",
         "operationId" : "CreateBankAccount",
         "requestBody" : {
           "content" : {
@@ -1225,17 +1229,24 @@
             "content" : {
               "application/json" : {
                 "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_400_3"
-                }
-              }
-            }
-          },
-          "500" : {
-            "description" : "Invalid _id parameter",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "$ref" : "#/components/schemas/inline_response_500"
+                  "$ref" : "#/components/schemas/inline_response_400"
+                },
+                "examples" : {
+                  "_id length" : {
+                    "value" : {
+                      "message" : "\"_id\" length must be 24 characters long"
+                    }
+                  },
+                  "accountNumber syntax" : {
+                    "value" : {
+                      "message" : "Bank Account not found"
+                    }
+                  },
+                  "Invalid _id parameter" : {
+                    "value" : {
+                      "message" : "BankAccount error:Cast to ObjectId failed for value (type string) at path \"_id\" for model \"BankAccount\""
+                    }
+                  }
                 }
               }
             }
@@ -1291,7 +1302,7 @@
                   },
                   "Country not available" : {
                     "value" : {
-                      "message" : "not implemented for: "
+                      "message" : "not implemented for: *country*"
                     }
                   }
                 }
@@ -1299,6 +1310,76 @@
             }
           }
         }
+      }
+    },
+    "/create-document" : {
+      "post" : {
+        "tags" : [ "Document Queries" ],
+        "summary" : "Saves user's document info.",
+        "operationId" : "document",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/createdocument_body"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Document"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "AuthorizationToken" : [ ]
+        } ]
+      }
+    },
+    "/create-address" : {
+      "post" : {
+        "tags" : [ "Document Queries" ],
+        "summary" : "Saves user's address info",
+        "operationId" : "address",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/createaddress_body"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Document"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "AuthorizationToken" : [ ]
+        } ]
       }
     }
   },
@@ -1527,6 +1608,37 @@
           }
         }
       },
+      "Pagination" : {
+        "type" : "object",
+        "properties" : {
+          "totalcount" : {
+            "type" : "number",
+            "example" : 30
+          },
+          "pageSize" : {
+            "type" : "number",
+            "example" : 6
+          },
+          "pageNumber" : {
+            "type" : "number",
+            "example" : 5
+          }
+        }
+      },
+      "Orders" : {
+        "type" : "object",
+        "properties" : {
+          "orders" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/Order"
+            }
+          },
+          "pagination" : {
+            "$ref" : "#/components/schemas/Pagination"
+          }
+        }
+      },
       "Quote" : {
         "type" : "object",
         "properties" : {
@@ -1631,6 +1743,31 @@
           "transferCode" : {
             "type" : "string",
             "example" : "001"
+          }
+        }
+      },
+      "Document" : {
+        "type" : "object",
+        "properties" : {
+          "addressStreet" : {
+            "type" : "string",
+            "example" : "ExampleStreet"
+          },
+          "addressCity" : {
+            "type" : "string",
+            "example" : "ExampleCity"
+          },
+          "addressZipCode" : {
+            "type" : "string",
+            "example" : "ExampleZipCode"
+          },
+          "addressCountry" : {
+            "type" : "string",
+            "example" : "ExampleCountry"
+          },
+          "zoneCode" : {
+            "type" : "string",
+            "example" : "ExampleZoneCode"
           }
         }
       },
@@ -1837,21 +1974,55 @@
           }
         }
       },
-      "inline_response_400_3" : {
+      "createdocument_body" : {
+        "required" : [ "addressCity", "addressCountry", "addressStreet", "addressZipCode" ],
         "type" : "object",
         "properties" : {
-          "message" : {
+          "addressStreet" : {
             "type" : "string",
-            "example" : "Bank Account not found"
+            "example" : "ExampleStreet"
+          },
+          "addressCity" : {
+            "type" : "string",
+            "example" : "ExampleCity"
+          },
+          "addressZipCode" : {
+            "type" : "string",
+            "example" : "ExampleZipCode"
+          },
+          "addressCountry" : {
+            "type" : "string",
+            "example" : "ExampleCountry"
+          },
+          "zoneCode" : {
+            "type" : "string",
+            "example" : "ExampleZoneCode"
           }
         }
       },
-      "inline_response_500" : {
+      "createaddress_body" : {
+        "required" : [ "addressCity", "addressCountry", "addressStreet", "addressZipCode" ],
         "type" : "object",
         "properties" : {
-          "message" : {
+          "addressStreet" : {
             "type" : "string",
-            "example" : "BankAccount error:Cast to ObjectId failed for value (type string) at path \"_id\" for model \"BankAccount\""
+            "example" : "ExampleStreet"
+          },
+          "addressCity" : {
+            "type" : "string",
+            "example" : "ExampleCity"
+          },
+          "addressZipCode" : {
+            "type" : "string",
+            "example" : "ExampleZipCode"
+          },
+          "addressCountry" : {
+            "type" : "string",
+            "example" : "ExampleCountry"
+          },
+          "zoneCode" : {
+            "type" : "string",
+            "example" : "ExampleZoneCode"
           }
         }
       },
